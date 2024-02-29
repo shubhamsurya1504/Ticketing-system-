@@ -1,0 +1,37 @@
+{% load static %}
+<HTML DOCTYPE!>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <title>Bus Info</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" type="text/css" href="{% static 'mysite/busInfo.css' %}">
+    </head>
+    <body>
+        <div id="businfo">
+            <div class="container">
+                <h1 class="subtitle1">TICKETING SYSTEM</h1>
+                <p class="subtitle2">Enter Bus Details</p>
+                <div class="details">
+                    <form method = "POST" action={% url 'addBusInfo' %}>
+                        {% csrf_token %}
+                    
+                        Bus Name<input type="text" name="bus_name" placeholder="Enter bus name" required> <br>
+                        Source<input type="text" name="source" placeholder="Enter source city" required> <br>
+                        Destination<input type="text" name="dest" placeholder="Enter destination city" required><br>
+                        Number of Buses<input type="text" name="nos" placeholder="Enter number of buses for journey" required><br>
+                        Remaining Seats<input type="text" name="rem" placeholder="Enter remaining seats for journey" required><br>
+                        Ticket Price<input type="text" name="price" placeholder="Enter price of ticket" required><br>
+                        Date of journey<input type="date" name="date" ><br>
+                        Time<input type="time" name="time" required><br>
+                        <button type="submit" class="btn btn2">Submit</button>
+                    </form> 
+            </div>
+        </div>
+    
+        
+        <script src="" async defer></script>
+    </body>
+</html>

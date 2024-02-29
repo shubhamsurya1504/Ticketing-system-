@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Homepage</title>
+    <link rel="stylesheet" href="/static/homeStyle.css">
+</head>
+
+<body>
+    <div>
+        <div id="home">
+            <div class="container">
+                <div class="header">
+                    <nav>
+                        <div class="headPart">
+                            <nav class="nav-left">
+                                <img src="/static/logo.jpeg" class="logo">
+                                <h1 class="title">Homepage</h1>
+                            </nav>
+                        </div>
+                        <div class="headPart">
+                            {% if request.user.is_active %}
+                            <a href="{% url 'logout'%}" class="btn">Log Out</a>
+                            {% else %}
+                            <a href="{% url 'newfirst'%}" class="btn">Log In</a>
+                {% endif %}
+                        </div>
+                    </nav>
+                </div>
+                <div class="details">
+                    <div class="ticket">
+                        <img src="/static/img1.png">
+                        <div class="layer">
+                            <h2>Find Bus</h2>
+                            <p>Get any bus details</p>
+                            <a href="{% url 'findbus' %}"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                        </div>
+                    </div>
+                    <div class="ticket">
+                        <img src="/static/img2.jpg">
+                        <div class="layer">
+                            <h2>My bookings</h2>
+                            <p>See your ticket bookings</p>
+                            <a href="{% url 'seebookings' %}"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                        </div>
+                    </div>
+                    <div class="ticket">
+                        <img src="/static/img3.jpg">
+                        <div class="layer">
+                            <h2>Check Availability</h2>
+                            <p>Check available buses and available seats for your journey..</p>
+                            <a href="{% url 'schedule'%}"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <a href="#" class="btn">See More</a>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>

@@ -1,0 +1,111 @@
+<html>
+    <head>
+        {% include "myapp/base.html" %}
+        <title>admission</title>
+        <p>
+            <b>
+                TICKET PAYMENT
+            </b>
+        </p>
+    <style>
+        .mb-3{
+            text-align:center;
+            width:50%;
+            margin-left:25%;
+        }
+        .mb-4{
+            margin-left:25%;
+          }
+        .form login{
+            text-align:center;
+        }
+        p{
+            text-align:center;
+            color:rgb(231, 107, 107);
+        }
+        body{
+                background-color: #d3d3d3;
+        }
+        .img{
+            text-align:center;
+        }
+    </style>
+<body>
+<div class="img">
+    <img src="/static/add_pay.jpeg">
+</div>
+<section class="container forms">
+    <div class="form login">
+        <div class="form-content">
+            <br>
+            <form method="post">
+                {% csrf_token %}
+                <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label">FULL NAME</label>
+                      <input type="text" class="form-control" name = "username" id="exampleInputEmail1" aria-describedby="emailHelp">
+                      <div id="emailHelp" class="form-text"></div>
+                    </div>
+                    <div class="mb-3">
+                      <label for="exampleInputEmail1" class="form-label">EMAIL</label>
+                        <input type="text" class="form-control" name = "email" id="exampleInputEmail1" aria-describedby="emailHelp">
+                        <div id="emailHelp" class="form-text"></div>
+                      </div>
+                    <div class="mb-3">
+                      <label for="exampleInputEmail1" class="form-label">AGE</label>
+                      <input type="text" class="form-control" name = "age" id="exampleInputEmail1" aria-describedby="emailHelp">
+                      <div id="emailHelp" class="form-text"></div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleInputEmail1" class="form-label">From</label>
+                        <input type="text" class="form-control" name="from" id="exampleInputEmail1" aria-describedby="emailHelp" value="{{ source_r }}">
+                        <div id="emailHelp" class="form-text"></div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleInputEmail1" class="form-label">To</label>
+                        <input type="text" class="form-control" name="to" id="exampleInputEmail1" aria-describedby="emailHelp" value="{{ destination_r }}">
+                        <div id="emailHelp" class="form-text"></div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleInputEmail1" class="form-label">Seats</label>
+                        <input type="text" class="form-control" name="seats" id="exampleInputEmail1" aria-describedby="emailHelp" value="{{ seats_r }}">
+                        <div id="emailHelp" class="form-text"></div>
+                    </div>
+                    <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label">PHONE NUMBER</label>
+                      <input type="text" class="form-control" name = "phone" id="exampleInputEmail1" aria-describedby="emailHelp">
+                      <div id="emailHelp" class="form-text"></div>
+                    </div>
+                    <div class="mb-4">
+                    <button type="submit"class="btn btn-success btn-block">Proceed To Pay</button>
+                    </div>
+            </form>
+        </div>
+    </div>
+    <section class="pay">
+        {% if payment %}
+        <form action = "/thank" method = "POST">
+         <script 
+                src="https://checkout.razorpay.com/v1/checkout.js"
+                data-key="rzp_test_npyA3ZVuOJNZ4S"
+                data-amount="{{payment.amount}}"
+               
+                data-currency="INR"
+                data-order_id="{{payment.id}}"  
+                data-buttontext="CLICK HERE TO PROCEED FOR PAYMENT"
+                data-name="VS TRAVELS"
+                data-description="Test transaction"
+                data-image="https://example.com/your_logo.jpg"
+                data-prefill.name="Gaurav Kumar"
+                data-prefill.email="gaurav.kumar@example.com"
+                data-prefill.contact="9999999999"
+                data-theme.color="#F37254"
+         ></script>
+         <input type="hidden" custom="Hidden Element" name="hidden">
+        </form>
+    
+        {% endif %}            
+    </section>
+</section>
+</body>
+</html>
+

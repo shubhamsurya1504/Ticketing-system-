@@ -1,0 +1,259 @@
+{% comment %} {% extends 'myapp/base.html' %} {% block content %}
+<div class="container  py-3">
+    <div class="card bg-info bg-gradient">
+        <div class="card-body">
+            <h2 class="my-3 text-center text-light">Welcome to XYZ Liner Transit Coproration Bus Reservation</h2>
+        </div>
+    </div>
+    <div class="row justify-content-center mt-4">
+        <div class="col-lg-5 col-md-7 col-sm-10 col-xs-12">
+            <div class="card rounded-0">
+                <div class="card-header">
+                    <div class="card-title h3 fw-bolde mb-0 text-center">Login</div>
+                </div>
+                <div class="card-body">
+                    <div class="container-fluid">
+                        <form action="{% url 'signin' %}" method="post" id="signin-form">
+                            {% csrf_token %}
+                            <div class="mb-3">
+                                <label for="username" class="control-label">Username:</label>
+                                <input name='name' class="form-control rounded-0" type="text" id="username" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="example-email-input" class="control-label">Password:</label>
+                                <input name='password' class="form-control rounded-0" type="password" required>
+                            </div>
+
+                        </form>
+                        <p>{{error}}</p>
+                    </div>
+                </div>
+                <div class="card-footer text-center">
+                    <button class="btn btn-sm rounded-0 btn-primary btn-block w-100" form="signin-form">Login</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+{% endblock %} {% endcomment %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Design by foolishdeveloper.com -->
+    <title>Login Page</title>
+ 
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet">
+    <!--Stylesheet-->
+    <style media="screen">
+      *,
+*:before,
+*:after{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+body{
+    background-color: #080710;
+}
+.background{
+    width: 430px;
+    height: 520px;
+    position: absolute;
+    transform: translate(-50%,-50%);
+    left: 50%;
+    top: 50%;
+}
+.background .shape{
+    height: 200px;
+    width: 200px;
+    position: absolute;
+    border-radius: 50%;
+}
+.shape:first-child{
+    background: linear-gradient(
+        #1845ad,
+        #23a2f6
+    );
+    left: -80px;
+    top: -80px;
+}
+.shape:last-child{
+    background: linear-gradient(
+        to right,
+        #ff512f,
+        #f09819
+    );
+    right: -30px;
+    bottom: -80px;
+}
+form{
+    height: 520px;
+    width: 400px;
+    background-color: rgba(255,255,255,0.13);
+    position: absolute;
+    transform: translate(-50%,-50%);
+    top: 50%;
+    left: 50%;
+    border-radius: 10px;
+    backdrop-filter: blur(10px);
+    border: 2px solid rgba(255,255,255,0.1);
+    box-shadow: 0 0 40px rgba(8,7,16,0.6);
+    padding: 50px 35px;
+}
+form *{
+    font-family: 'Poppins',sans-serif;
+    color: #ffffff;
+    letter-spacing: 0.5px;
+    outline: none;
+    border: none;
+}
+form h3{
+    font-size: 32px;
+    font-weight: 500;
+    line-height: 42px;
+    text-align: center;
+}
+
+label{
+    display: block;
+    margin-top: 30px;
+    font-size: 16px;
+    font-weight: 500;
+}
+input{
+    display: block;
+    height: 50px;
+    width: 100%;
+    background-color: rgba(255,255,255,0.07);
+    border-radius: 3px;
+    padding: 0 10px;
+    margin-top: 8px;
+    font-size: 14px;
+    font-weight: 300;
+}
+::placeholder{
+    color: #e5e5e5;
+}
+button{
+    margin-top: 50px;
+    width: 100%;
+    background-color: #ffffff;
+    color: #080710;
+    padding: 15px 0;
+    font-size: 18px;
+    font-weight: 600;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.social{
+  margin-top: 30px;
+  display: flex;
+}
+.social div{
+  background: red;
+  width: 150px;
+  border-radius: 3px;
+  padding: 5px 10px 10px 5px;
+  background-color: rgba(255,255,255,0.27);
+  color: #eaf0fb;
+  text-align: center;
+}
+.social div:hover{
+  background-color: rgba(255,255,255,0.47);
+}
+.social .fb{
+  margin-left: 25px;
+}
+.social i{
+  margin-right: 4px;
+}
+
+
+    /* Add CSS for the switch buttons */
+    .switch-button {
+        position: fixed;
+        top: 25px;
+        right: 20px;
+        display: flex;
+        align-items: center;
+        font-size: 20px;
+    }
+
+    .switch-button label {
+        margin: 5px;
+        padding: 10px 20px;
+        background-color: #2196F3;
+        border-radius: 5px;
+        color: #fff;
+        cursor: pointer;
+    }
+
+    .switch-button label:hover {
+        background-color: #0b7dda;
+    }
+
+    #adminLabel:checked + label.admin,
+    #customerLabel:checked + label.customer {
+        background-color: #2196F3;
+    }
+
+    #adminLabel:checked + label.admin:hover,
+    #customerLabel:checked + label.customer:hover {
+        background-color: #0b7dda;
+    }
+
+    input[type="radio"] {
+        display: none;
+    }
+
+    </style>
+</head>
+<body>
+
+    <div class="switch-button">
+        <input type="radio" name="user" id="adminLabel" checked>
+        <input type="radio" name="user" id="customerLabel">
+
+        <label for="adminLabel" class="admin" onclick="redirectToAdminPage()">Admin</label>
+        <label for="customerLabel" class="customer" onclick="redirectToCustomerLoginPage()">Customer</label>
+    </div>
+
+    
+    <script>
+    function redirectToAdminPage() {
+        window.location.href = "admin"; // Replace with the actual URL of the admin page.
+    }
+
+    function redirectToCustomerLoginPage() {
+        window.location.href = ""; // Replace with the actual URL of the customer login page.
+    }
+    </script>
+
+
+    <div class="background">
+        <div class="shape"></div>
+        <div class="shape"></div>
+    </div>
+    <form method="post">
+        <h3>Login Here</h3>
+        {% csrf_token %} 
+        <label for="username">Username</label>
+        <input type="text" placeholder="Enter Username" id="username" name="username">
+
+        <label for="password">Password</label>
+        <input type="password" placeholder="Password" id="password" name="pass">
+
+        <button type="submit">Log In</button>
+        <!-- <input type="button" value=""> -->
+        <!-- <div class="social">
+          <div class="go"><i class="fab fa-google"></i>  Google</div>
+          <div class="fb"><i class="fab fa-facebook"></i>  Facebook</div>
+        </div> -->
+        <a href="{% url 'signup' %}" >Create a account</a>
+    </form>
+</body>
+</html>

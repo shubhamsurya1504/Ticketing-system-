@@ -1,0 +1,54 @@
+{% extends 'myapp/base.html' %}
+{% block content %}
+<style>
+body {
+    background-color: #d3d3d3; 
+}
+</style>
+<div class="container my-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-6 col-md-8 col-sm-10 col-xs-12">
+            <div class="card-body1">
+                <div class="container-fluid1">
+                    <div class="schedule">
+                        <table border=1  color="black" align="center" >
+                        <h3><center><font color="black"></font> </h3></center>
+                        <hr color="green">
+                        <h4> <center> <b><i>BUS SCHEDULE </i></b></center> </h4>
+                       
+                
+                               <table border=1  color="black" align="center" >
+                          <tr>  
+                        <th> Bus_Name </th>
+                        <th> Source </th>
+                        <th> Destination </th>
+                        <th> No. of Seats </th>
+                        <th> Remaining Seats </th>
+                        <th> Price </th>
+                        <th> Date </th>
+                        <th> Time </th>
+                          </tr> 
+                        
+                        {% for aentry in data %}
+                        <tr>
+                  <td align="center"> {{ aentry.bus_name }} </td>        
+                  <td align="center"> {{ aentry.source }} </td>
+                  <td align="center"> {{ aentry.dest }} </td>
+                  <td align="center"> {{ aentry.nos }} </td>
+                  <td align="center"> {{ aentry.rem }} </td>
+                  <td align="center"> {{ aentry.price }} </td>
+                  <td align="center"> {{ aentry.date }} </td>
+                  <td align="center"> {{ aentry.time }} </td>
+                        </tr>
+                        {% endfor %}
+                    </table>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <br>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

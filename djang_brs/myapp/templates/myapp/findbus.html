@@ -1,0 +1,269 @@
+{% extends 'myapp/base.html' %}
+{% block content %}
+<style>
+    
+    .container-fluid1 {
+        margin-top: 20px;
+    }
+
+    .schedule-section {
+        background-color: #f8f9fa;
+        border: 1px solid #dee2e6;
+        border-radius: 5px;
+        padding: 3px;
+        margin-bottom: 20px; /* Default margin */
+    }
+    {% comment %} .schedule th, .schedule td {
+        border: 1px solid #dee2e6;
+        padding: 12px; /* Adjust the padding to add space */
+        text-align: center;
+    } {% endcomment %}
+    .schedule th, .schedule td {
+        border: 1px solid #adb5bd;
+        padding: 12px; /* Adjust the padding to add space */
+        text-align: center;
+    }
+
+    .schedule td {
+        border-bottom: 1px solid #adb5bd; /* Add a thin line after every data entry */
+    }
+
+    /* Increase the width of the table */
+    .schedule-table {
+        width: 120%; /* You can adjust the percentage based on your needs */
+        max-width: none; /* Disable the maximum width */
+    }
+
+    /* Add media queries for responsiveness */
+    @media (max-width: 768px) {
+        .schedule th, .schedule td {
+            padding: 8px; /* Adjust the padding for smaller screens */
+        }
+    }
+
+    @media (max-width: 576px) {
+        .schedule th, .schedule td {
+            padding: 6px; /* Further adjust the padding for very small screens */
+        }
+    }
+    .schedule-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+    }
+
+    .schedule th, .schedule td {
+        border: 1px solid #dee2e6;
+        padding: 8px;
+        text-align: center;
+    }
+
+    .image-section {
+        background-color: #f8f9fa;
+        border: 1px solid #dee2e6;
+        border-radius: 5px;
+        padding: 20px;
+        margin-bottom: 20px; /* Default margin */
+    }
+
+    .bus-image {
+        max-width: 100%;
+        height: 550px;
+        border-radius: 5px;
+    }
+
+    .find-bus-form {
+        margin-top: 20px;
+    }
+
+    /* Custom class for adjusting the space between sections */
+    .custom-row-margin {
+        padding:50px;
+        width: 120%;
+        margin-bottom: 30px; /* Adjust the margin as needed */
+    }
+
+    body {
+        position: relative;
+        pdding:20px;
+        margin: 0;
+        height: 100%;
+    }
+    
+    body::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(rgba(100, 100, 100, .8), rgba(100, 100, 100, .85)), url("/static/businside.jpg");
+        background-size: cover;
+        background-position: center;
+        background-repeat: repeat;
+        z-index: -1;
+    }
+    @media (max-width: 768px) {
+        .schedule-section, .image-section {
+            margin-bottom: 10px; /* Adjust margin for smaller screens */
+        }
+
+        .schedule th, .schedule td {
+            font-size: 12px; /* Adjust font size for smaller screens */
+            padding: 6px; /* Adjust padding for smaller screens */
+        }
+
+        .bus-image {
+            border-radius: 0; /* Remove border radius for smaller screens */
+        }
+
+        .find-bus-form {
+            margin-top: 10px; /* Adjust margin for smaller screens */
+        }
+
+        .custom-row-margin {
+            padding: 20px; /* Adjust padding for smaller screens */
+        }
+    }
+
+    @media (max-width: 576px) {
+        /* Additional styles for even smaller screens */
+        .schedule-section, .image-section {
+            margin-bottom: 5px; /* Further adjust margin for very small screens */
+        }
+
+        .schedule th, .schedule td {
+            font-size: 10px; /* Further adjust font size for very small screens */
+            padding: 4px; /* Further adjust padding for very small screens */
+        }
+
+        .custom-row-margin {
+            padding: 10px; /* Further adjust padding for very small screens */
+        }
+    }
+    @media (max-width: 768px) {
+        .schedule-table {
+            width: 100%;
+            font-size: 12px; /* Adjust font size for smaller screens */
+        }
+
+        .schedule th, .schedule td {
+            padding: 8px; /* Adjust padding for smaller screens */
+        }
+    }
+
+    @media (max-width: 576px) {
+        .schedule-table {
+            width: 100%;
+            font-size: 10px; /* Further adjust font size for very small screens */
+        }
+
+        .schedule th, .schedule td {
+            padding: 6px; /* Further adjust padding for very small screens */
+        }
+    }
+</style>
+<body>
+<div class="container my-5">
+    <div class="row justify-content-center custom-row-margin">
+        <div class="col-lg-8 col-md-10">
+            <div class="card-body1">
+                <div class="container-fluid1">
+                    <div class="row">
+                        <!-- Schedule Section -->
+                        <div class="col-md-7">
+                            <div class="schedule-section">
+                                <h3><center><font color="black"></font></h3></center>
+                                <hr color="green">
+                                <h4><center><b><i>BUS SCHEDULE </i></b></center></h4>
+
+                                <table class="schedule-table" border=1 color="black" align="center">
+                                    <tr>  
+                                        <th> Bus_Name </th>
+                                        <th> Source </th>
+                                        <th> Destination </th>
+                                        <th> No. of Seats </th>
+                                        <th> Remaining Seats </th>
+                                        <th> Price </th>
+                                        <th> Date </th>
+                                        <th> Time </th>
+                                    </tr> 
+                            
+                                    {% for aentry in data %}
+                                    <tr>
+                                        <td align="center"> {{ aentry.bus_name }} </td>        
+                                        <td align="center"> {{ aentry.source }} </td>
+                                        <td align="center"> {{ aentry.dest }} </td>
+                                        <td align="center"> {{ aentry.nos }} </td>
+                                        <td align="center"> {{ aentry.rem }} </td>
+                                        <td align="center"> {{ aentry.price }} </td>
+                                        <td align="center"> {{ aentry.date }} </td>
+                                        <td align="center"> {{ aentry.time }} </td>
+                                    </tr>
+                                    {% endfor %}
+                                </table>
+                            </div>
+                        </div>
+                    
+                        
+                        <!-- Image Section -->
+                        <div class="col-md-5">
+                            <div class="image-section">
+                                <!-- Add an image here -->
+                                <img src="/static/background.jpg" alt="Bus Image" class="img-fluid bus-image">
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+                
+                <div class="card rounded-0 find-bus-form">
+                    <div class="card-header">
+                        <div class="card-title h3 mb-0">Find Bus</div>
+                    </div>
+                    
+                    <div class="card-body">
+                        <div class="container-fluid">
+                            <form action="{% url 'findbus' %}" method="post" id="find-form">
+                                {% csrf_token %}
+                                <div class="mb-3">
+                                    <label for="source" class="control-label">From</label>
+                                    <select name="source" id="source" class="form-control rounded-0" required>
+                                        <option value="" {% if not data.source %}selected{% endif %}>Select Source</option>
+                                        {% for location in source_data %}
+                                            <option value="{{ location }}" {% if data.source == location %}selected{% endif %}>{{ location }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="destination" class="control-label">Destination</label>
+                                    <select name="destination" id="destination" class="form-control rounded-0" required>
+                                        <option value="" {% if not data.destination %}selected{% endif %}>Select Destination</option>
+                                        {% for location in destination_data %}
+                                            <option value="{{ location }}" {% if data.destination == location %}selected{% endif %}>{{ location }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="date" class="control-label">Date</label>
+                                    <input name="date" id="date" class="form-control rounded-0" type="date" value="{% if data.date %}{{ data.date }}{% endif %}" required>
+                                </div>
+                                {% if error %}
+                                    <div class="alert alert-danger">
+                                        {{ error }}
+                                    </div>
+                                {% endif %}
+                            </form>
+                        </div>
+                    </div>
+                    <div class="card-footer text-center">
+                        <button class="btn btn-sm rounded-0 btn-primary w-100" form="find-form">Find</button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+{% endblock %}
